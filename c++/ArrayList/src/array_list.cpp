@@ -2,6 +2,7 @@
 
     ArrayList::ArrayList() : elemet_numbers(0), last_element(-1) {
         this->array = new int[this->defaut_size];
+        this->slot_size = this->defaut_size;
     }
 
     ArrayList::~ArrayList() {
@@ -72,7 +73,6 @@
         delete(this->array);
         this->array = new_array;
         this->slot_size = lengh;
-        delete(new_array);
     }
 
     void ArrayList::clear() {
