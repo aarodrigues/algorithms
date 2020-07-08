@@ -43,6 +43,8 @@
     bool LinkedList::remove_by_val(const int &data) {
         Node *current = this->head;
         Node *trash;
+        if(current->data == data) 
+            return this->remove_head();
         while(current->next != nullptr) {
             if(current->next->data == data) {
                 trash = current->next;
