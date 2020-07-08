@@ -9,6 +9,7 @@
     }
 
     void LinkedList::append(const int &data) {
+        this->list_lenght++;
         if(this->head == nullptr) {
             this->head = new Node(data);
             return;
@@ -18,7 +19,6 @@
             current = current->next;
         }
         current->next = new Node(data);
-        this->list_lenght++;
     }
 
     void LinkedList::preppend(const int &data) {
