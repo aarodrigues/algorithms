@@ -93,7 +93,7 @@ BinaryTree::Node* BinaryTree::remove(Node *node, const int &key) {
 
         // Case 3: Two Children
         else {
-            Node *min_right = this->min(node);
+            Node *min_right = this->min(node->right);
             node->key = min_right->key;
             node->data = min_right->data;
             node->right = this->remove(node->right, node->key);
