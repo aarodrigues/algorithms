@@ -22,7 +22,7 @@ class AVLTree {
     AVLTree();
     ~AVLTree();
     void insert(const int &key, const int &value);
-    AVLTree::Node insert(Node &node, const int &key, const int &value);
+    AVLTree::Node* insert(Node *node, const int &key, const int &value);
     bool remove(const int &key);
     bool remove(Node &node, const int &key);
     bool find(Node &node, const int &key);
@@ -38,7 +38,8 @@ class AVLTree {
 
   private:
     Node *root;
-    Node leftRotate(Node &node);
-    Node rightRotate(Node &node);
+    Node* leftRotate(Node *node);
+    // Node rightRotate(Node &node);
+    Node* rightRotate(Node *node);
     Node getMin(Node &node);
 };

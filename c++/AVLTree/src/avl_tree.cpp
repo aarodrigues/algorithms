@@ -14,42 +14,42 @@ void AVLTree::insert(const int &key, const int &value){
         this->root = new Node(key,value);
         return;
     }
-    *this->root = this->insert(*this->root, key, value);
+    this->root = this->insert(this->root, key, value);
 }
 
-AVLTree::Node AVLTree::insert(Node &node, const int &key, const int &value){
-    if(node.key > key) {
-        if(node.left == nullptr) {
-            node.left = new Node(key, value);
+AVLTree::Node* AVLTree::insert(Node *node, const int &key, const int &value){
+    if(node->key > key) {
+        if(node->left == nullptr) {
+            node->left = new Node(key, value);
         }else {
-            this->insert(*node.left, key, value);            
+            this->insert(node->left, key, value);            
         }
-    }else if(node.key < key) {
-        if(node.right == nullptr) {
-            node.right = new Node(key, value);
+    }else if(node->key < key) {
+        if(node->right == nullptr) {
+            node->right = new Node(key, value);
         }else {
-            this->insert(*node.right, key, value);            
+            this->insert(node->right, key, value);            
         }
     }else {
         std::cout << "Duplicated keys is not allowed" << std::endl;
         return node;
     }
 
-    node.height = this->max(this->height(node.left),this->height(node.right)) + 1;
-    int balance = this->getBalance(node);
+    node->height = this->max(this->height(node->left),this->height(node->right)) + 1;
+    int balance = this->getBalance(*node);
 
     /**
      * If balance > 1 left branch is bigger 
     */
 
     // left-left case 
-    if(balance > 1 && key < node.left->key) {
+    if(balance > 1 && key < node->left->key) {
         std::cout << "rebalanced" << std::endl;
         return this->rightRotate(node);
     }
     // left-right case
-    if(balance > 1 && key > node.left->key) {
-        *node.left = this->leftRotate(node);
+    if(balance > 1 && key > node->left->key) {
+        node->left = this->leftRotate(node);
         return this->rightRotate(node);
     }
 
@@ -58,12 +58,12 @@ AVLTree::Node AVLTree::insert(Node &node, const int &key, const int &value){
     */
 
     //right-right case
-    if(balance < -1 && key > node.right->key) {
+    if(balance < -1 && key > node->right->key) {
         return this->leftRotate(node);
     }
     // right-left case
-    if(balance < -1 && key < node.right->key) {
-        *node.right = this->rightRotate(node);
+    if(balance < -1 && key < node->right->key) {
+        node->right = this->rightRotate(node);
         return this->leftRotate(node);
     }
 
@@ -130,9 +130,7 @@ bool AVLTree::contains(const int &key){
 }
 
 void AVLTree::print(){
-    std::cout << "RRRRRRROOOOOOTTTTT" << std::endl;
-    std::cout << this->root->right->key << std::endl;
-    // this->printInOrder(*this->root);
+    this->printInOrder(*this->root);
 }
 void AVLTree::printInOrder(Node &node){
     
@@ -142,9 +140,7 @@ void AVLTree::printInOrder(Node &node){
     }
     std::cout << node.value << std::endl;
     if(node.right != nullptr) {
-        std::cout << "bum: " << node.right->key <<std::endl;
-        std::cout << "bum: " << node.right->value <<std::endl;
-        // printInOrder(*node.right);
+        printInOrder(*node.right);
     }
 }
 void AVLTree::printPreOrder(Node &node){
@@ -200,33 +196,28 @@ int AVLTree::getBalance(Node &node) {
 * Left-Right -> Rotate left then right
 */
 
-AVLTree::Node AVLTree::leftRotate(Node &node){
-    Node *pivot = node.right;
-    Node *pivot_left_branch = pivot->left;
+AVLTree::Node* AVLTree::leftRotate(Node *node){
+    Node *pivot = node->right;
+    Node *p_left_branch = pivot->left;
 
-    pivot->left = &node;
-    node.right = pivot_left_branch;
+    pivot->left = node;
+    node->right = p_left_branch;
 
-    node.height = this->max(node.left->height, node.right->height) + 1;
+    node->height = this->max(node->left->height, node->right->height) + 1;
     pivot->height = this->max(pivot->left->height, pivot->right->height) + 1;
 
-    return *pivot;
+    return pivot;
 }
-AVLTree::Node AVLTree::rightRotate(Node &node){
-    Node *pivot = node.left;
-    Node *pivot_right_branch = pivot->right;
 
-    std::cout << pivot->key << std::endl;
-    pivot->right = &node;
-    node.left = pivot_right_branch;
-    std::cout << node.left << std::endl;
-    
-    if (pivot->right->right == nullptr) {
-        std::cout << "null" <<std::endl;
-    }
+AVLTree::Node* AVLTree::rightRotate(Node *node){
+    Node *pivot = node->left;
+    Node *p_right_branch = pivot->right;
 
-    node.height = this->max(this->height(node.left),this->height(node.right)) + 1;
+    pivot->right = node;
+    node->left = p_right_branch;
+
+    node->height = this->max(this->height(node->left),this->height(node->right)) + 1;
     pivot->height = this->max(this->height(pivot->left),this->height(pivot->right)) + 1;
     
-    return *pivot;
+    return pivot;
 }
