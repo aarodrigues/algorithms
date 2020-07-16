@@ -39,7 +39,6 @@ class AVLTree {
   private:
     Node *root;
     Node* leftRotate(Node *node);
-    // Node rightRotate(Node &node);
     Node* rightRotate(Node *node);
     Node getMin(Node &node);
 };
