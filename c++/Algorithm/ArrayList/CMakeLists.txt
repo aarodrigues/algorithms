@@ -8,8 +8,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON) #...is required...
 set(HEADERS "arraylist.hpp")
 set(ENTRY_POINT "main.cpp")
 
-# include_directories(include)
-
 add_executable(${PROJECT_NAME} ${ENTRY_POINT} ${HEADERS} )
 
 # enable ctest tool

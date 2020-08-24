@@ -1,23 +1,24 @@
 #include <iostream>
 #include <sstream>
 
+template<class T>
 class ArrayList {
     private:
         static const int default_size = 2;
-        int *array = new int[default_size];
+        T *array = new T[default_size];
         int array_size = default_size;
         int elements_numbers = 0;
     
     public:
 
-        void add(const int &item) {
+        void add(const T &item) {
             if(elements_numbers == array_size) {
                 resize();
             }
             array[elements_numbers++] = item; 
         }
 
-        int get(const int &index) {
+        T get(const int &index) {
             return array[index];
         }
 
@@ -30,7 +31,7 @@ class ArrayList {
 
         void resize() {
             array_size *= 2;
-            int *temp = new int[array_size];
+            T *temp = new T[array_size];
             for(int i = 0; i < elements_numbers; i++) {
                 temp[i] = array[i];
             }
@@ -46,6 +47,6 @@ class ArrayList {
             delete(array);
             elements_numbers = 0;
             array_size = default_size;
-            array = new int[default_size];
+            array = new T[default_size];
         }
 };
