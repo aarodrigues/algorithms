@@ -1,11 +1,11 @@
 cmake_minimum_required(VERSION 3.0.1)
 
-project(sorting)
+project(arraylist)
 
 set (CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON) #...is required...
 
-set(HEADERS "quicksort.hpp" "mergesort.hpp" "radixsort" "bubblesort.hpp")
+set(HEADERS "arraylist.hpp")
 set(ENTRY_POINT "main.cpp")
 
 # include_directories(include)
