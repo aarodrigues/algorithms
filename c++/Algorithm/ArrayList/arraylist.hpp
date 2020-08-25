@@ -9,6 +9,16 @@ class ArrayList {
         int array_size = default_size;
         int elements_numbers = 0;
     
+        void resize() {
+            array_size *= 2;
+            T *temp = new T[array_size];
+            for(int i = 0; i < elements_numbers; i++) {
+                temp[i] = array[i];
+            }
+            delete(array);
+            array = temp;
+        }
+
     public:
 
         void add(const T &item) {
@@ -27,16 +37,6 @@ class ArrayList {
                 array[i] = array[i+1];
             }
             elements_numbers--;
-        }
-
-        void resize() {
-            array_size *= 2;
-            T *temp = new T[array_size];
-            for(int i = 0; i < elements_numbers; i++) {
-                temp[i] = array[i];
-            }
-            delete(array);
-            array = temp;
         }
 
         int size() {

@@ -9,7 +9,3 @@ set(HEADERS "arraylist.hpp")
 set(ENTRY_POINT "main.cpp")
 
 add_executable(${PROJECT_NAME} ${ENTRY_POINT} ${HEADERS} )
-
-# enable ctest tool
-# enable_testing()
-# add_subdirectory(test)
