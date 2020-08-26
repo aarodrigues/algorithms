@@ -1,0 +1,27 @@
+Data Structures:
+
+• Array
+• Linked List
+• Binary Tree, Binary Search Tree
+• Heap
+• Hash Table
+• Hash sets
+• Stack
+• Queue
+• Trie
+• Graph (both directed and undirected)
+
+Algorithms:
+
+• Bubble Sort
+• Sorting
+• Merge Sort
+• Quick Sort
+• Radix/Bucket Sort
+• Traversals (On multiple data structures)
+• Depth First Search
+• Breadth First Search
+• Binary search
+• A*
+• Divide and conquer​
+• Dynamic programming
