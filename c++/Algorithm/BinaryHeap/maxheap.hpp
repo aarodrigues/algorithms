@@ -9,28 +9,27 @@ class MaxHeap {
         int size;
 
         int extractMax(){
-            if(this->size == 0) throw "Empty Heap";
-            int item = *(this->items + 0);
-            *(this->items + 0) = *(this->items + (size - 1));
-            this->size--;
-            this->heapifyDown();
+            if(size == 0) throw "Empty Heap";
+            int item = items[0];
+            items[0] = items[size - 1];
+            size--;
+            heapifyDown();
             return item;
         }
 
         void  insert(const int &item){
-            if(this->size == this->array_size) {
-                this->ensureCapacity();
+            if(size == array_size) {
+                ensureCapacity();
             }
-            *(this->items + size) = item;
-            this->size++;
-            this->heapifyUp();
+            items[size++] = item;
+            heapifyUp();
         }
 
         void  heapifyUp(){
-            int index = this->size - 1;
-            while (this->hasParent(index) && this->parent(index) < *(this->items + index))
+            int index = size - 1;
+            while (hasParent(index) && parent(index) < items[index])
             {
-                this->swap(this->parentIndex(index),index);
+                swap(parentIndex(index),index);
                 index = parentIndex(index);
             }
 
@@ -39,14 +38,14 @@ class MaxHeap {
         void heapifyDown(){
              int index = 0;
 
-             while(this->hasLeftChild(index)) {
+             while(hasLeftChild(index)) {
                  int largeChildIndex = leftChildIndex(index);
 
                  if(hasRightChild(index) && rightChild(index) > leftChild(index)) {
                      largeChildIndex = rightChildIndex(index);
                  }
 
-                 if(*(items + index) > *(items + largeChildIndex)) {
+                 if(items[index] > items[largeChildIndex]) {
                  
                  }else {
                      swap(index, largeChildIndex);
@@ -56,8 +55,8 @@ class MaxHeap {
         }
 
         void print(){
-            for(int i = 0; i < this->size; i++) {
-                std::cout << "Item " << i << std::string(": ") << *(this->items + i) << std::endl;
+            for(int i = 0; i < size; i++) {
+                std::cout << "Item " << i << std::string(": ") << items[i] << std::endl;
             }
         }
 
@@ -74,11 +73,11 @@ class MaxHeap {
         }
 
         bool hasLeftChild(const int &index){
-            return leftChildIndex(index) < this->size;
+            return leftChildIndex(index) < size;
         }
 
         bool hasRightChild(const int &index){
-            return rightChildIndex(index) < this->size;
+            return rightChildIndex(index) < size;
         }
 
         bool hasParent(const int &index){
@@ -86,22 +85,22 @@ class MaxHeap {
         }
 
         int leftChild(const int &index){
-            return this->items[leftChildIndex(index)];
+            return items[leftChildIndex(index)];
         }
 
         int rightChild(const int &index){
-            return this->items[rightChildIndex(index)];
+            return items[rightChildIndex(index)];
         }
 
         int parent(const int &index){
-            return this->items[parentIndex(index)];
+            return items[parentIndex(index)];
         }
 
         void ensureCapacity(){
-            this->array_size *= 2;
-            int *array = new int[this->array_size];
-            for(int i = 0; i < this->size; i++) {
-                *(array + i) = items[i];
+            array_size *= 2;
+            int *array = new int[array_size];
+            for(int i = 0; i < size; i++) {
+                array[i] = items[i];
             }
             int *trash = items;
             items = array;
@@ -109,8 +108,8 @@ class MaxHeap {
         }
 
         void swap(const int &indexOne, const int &indexTwo){
-            int temp = *(this->items + indexOne);
-            *(this->items + indexOne) = *(this->items + indexTwo);
-            *(this->items + indexTwo) = temp;
+            int temp = items[indexOne];
+            items[indexOne] = items[indexTwo];
+            items[indexTwo] = temp;
         }
 };
