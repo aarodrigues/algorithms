@@ -5,7 +5,7 @@ project(sorting)
 set (CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON) #...is required...
 
-set(HEADERS "quicksort.hpp" "mergesort.hpp" "radixsort" "bubblesort.hpp")
+set(HEADERS "quicksort.hpp" "mergesort.hpp" "radixsort" "bubblesort.hpp" "insertionsort.hpp" "selectionsort.hpp")
 set(ENTRY_POINT "main.cpp")
 
 # include_directories(include)
