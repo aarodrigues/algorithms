@@ -1,0 +1,4 @@
+Single-pair
+Single-source
+Single-destination
+All-pairs
