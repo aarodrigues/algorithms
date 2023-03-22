@@ -42,5 +42,5 @@ if __name__ == '__main__':
     queue.add(10)
     queue.show()
     print(queue.get())
-    print("##################")
+    print("************************")
     queue.show()
